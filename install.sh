@@ -9,10 +9,11 @@ cp /etc/skel/.bashrc ~/
 
 printf '2\nn\n' | sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
 
+echo "export PATH="/home/builder/.local/bin:\$PATH"" >> ~/.bashrc
+source ~/.bashrc
 
 printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-echo "export PATH="/home/builder/.local/bin:\$PATH"" >> ~/.bashrc
 echo "exec zsh" >> ~/.bashrc
 # exh
 # exec zsh
