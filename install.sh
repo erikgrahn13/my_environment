@@ -8,7 +8,7 @@ export PATH="/home/builder/.local/bin:$PATH"
 
 printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
-exec zsh
+# exec zsh
 # sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)"
 
 
