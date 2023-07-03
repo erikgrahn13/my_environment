@@ -16,7 +16,8 @@ printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/m
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 sed -i '19i ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
-sed -i '82i plugins=(git zsh-autosuggestions)' ~/.zshrc
+# sed -i '82i plugins=(git zsh-autosuggestions)' ~/.zshrc
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 echo "exec zsh" >> ~/.bashrc
 # exh
