@@ -1,30 +1,38 @@
 #!/bin/bash
 
-# sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-# touch ~/.bashrc
-# echo "source /etc/skel/.bashrc" >> ~/.bashrc
-uid_gid_entrypoint
+if command -v uid_gid_entrypoint >/dev/null; then
+    echo "no uid_gid_entrypoint"
+    uid_gid_entrypoint
+    cp /etc/skel/.bashrc ~/
+fi
 
-cp /etc/skel/.bashrc ~/
+# install zsh
+if ! command -v zsh >/dev/null; then
+    printf '2\nn\n' | sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
+fi
 
-printf '2\nn\n' | sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
+# check if oh-my-zsh already exists
+if [ ! -d "$HOME/.oh-my-zsh" ] 
+then
+    printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+fi
+
+# check if powerlevel10k exists
+if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ] 
+then
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
+# check if zsh-autosuggestions exists
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ] 
+then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+fi
 
 export PATH="/home/builder/.local/bin:$PATH"
 echo "export PATH="/home/builder/.local/bin:\$PATH"" >> ~/.bashrc
-
-printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-# sed -i '19i ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
-# sed -i '82i plugins=(git zsh-autosuggestions)' ~/.zshrc
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 cp .zshrc ~/.zshrc
 cp .p10k.zsh ~/.p10k.zsh
 
 echo "exec zsh" >> ~/.bashrc
-# exh
-# exec zsh
-# sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)"
-
-
