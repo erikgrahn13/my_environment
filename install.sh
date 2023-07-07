@@ -30,6 +30,12 @@ then
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 fi
 
+# check if tmux plugin manager exists
+if [ ! -d "$HOME/.tmux/plugins/tpm" ] 
+then
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
 echo "export PATH="$HOME/.local/bin:\$PATH"" >> ~/.bashrc
 
 cp .zshrc ~/.zshrc
