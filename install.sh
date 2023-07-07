@@ -1,16 +1,16 @@
 #!/bin/bash
 
-if command -v uid_gid_entrypoint >/dev/null; then
+# if command -v uid_gid_entrypoint >/dev/null; then
     uid_gid_entrypoint
     cp /etc/skel/.bashrc ~/
-fi
+# fi
 
 # install zsh
 if ! command -v zsh >/dev/null; then
     printf '2\nn\n' | sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
-    export PATH="$HOME/.local/bin:$PATH"
 fi
 
+export PATH="$HOME/.local/bin:$PATH"
 
 # check if oh-my-zsh already exists
 if [ ! -d "$HOME/.oh-my-zsh" ] 
