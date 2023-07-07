@@ -8,7 +8,7 @@ fi
 # install zsh
 if ! command -v zsh >/dev/null; then
     printf '2\nn\n' | sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh-bin/master/install)"
-    export PATH="/home/builder/.local/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 
@@ -30,7 +30,7 @@ then
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 fi
 
-echo "export PATH="/home/builder/.local/bin:\$PATH"" >> ~/.bashrc
+echo "export PATH="$HOME/.local/bin:\$PATH"" >> ~/.bashrc
 
 cp .zshrc ~/.zshrc
 cp .p10k.zsh ~/.p10k.zsh
