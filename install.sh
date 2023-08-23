@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# if command -v uid_gid_entrypoint >/dev/null; then
+if command -v uid_gid_entrypoint >/dev/null; then
     uid_gid_entrypoint
     cp /etc/skel/.bashrc ~/
-# fi
+fi
 
 # install zsh
 if ! command -v zsh >/dev/null; then
@@ -36,9 +36,27 @@ then
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
+if [ -f ~/.bashrc ]; then
+    echo ".bashrc file exists."
+    mv ~/.bashrc ~/bashrc_org
+else
+    echo ".bashrc file does not exist."
+fi
+
+if [ -f ~/.bash_profile ]; then
+    echo ".bash_profile file exists."
+    mv ~/.bash_profile ~/bash_profile_org
+else
+    echo ".bash_profile file does not exist."
+fi
+
+touch ~/.bashrc
+touch ~/.bash_profile
 echo "export PATH="$HOME/.local/bin:\$PATH"" >> ~/.bashrc
+echo "export PATH="$HOME/.local/bin:\$PATH"" >> ~/.bash_profile
 
 cp .zshrc ~/.zshrc
 cp .p10k.zsh ~/.p10k.zsh
 
 echo "exec zsh" >> ~/.bashrc
+echo "exec zsh" >> ~/.bash_profile
