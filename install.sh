@@ -29,7 +29,7 @@ if [ ! -f "$$HOME/.local/bin/starship"  ]
 then
     printf 'Y\n' | sh -c "$(wget -O $HOME/starship.tar.gz https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz)"
     mkdir -p ~/.local/bin
-    tar xvf starship.tar.gz -C ~/.local/bin
+    tar xvf $HOME/starship.tar.gz -C ~/.local/bin
 fi
 
 # check if zsh-autosuggestions exists
