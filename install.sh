@@ -13,15 +13,23 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # check if oh-my-zsh already exists
-if [ ! -d "$HOME/.oh-my-zsh" ] 
-then
-    printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-fi
+# if [ ! -d "$HOME/.oh-my-zsh" ] 
+# then
+#     printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+# fi
 
-# check if powerlevel10k exists
-if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ] 
+# # check if powerlevel10k exists
+# if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ] 
+# then
+#     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# fi
+
+# check if starship already exists
+if [ ! -f "$$HOME/.local/bin/starship"  ] 
 then
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    printf 'Y\n' | sh -c "$(wget -O $HOME/starship.tar.gz https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz)"
+    mkdir -p ~/.local/bin
+    tar xvf starship.tar.gz -C ~/.local/bin
 fi
 
 # check if zsh-autosuggestions exists
@@ -31,10 +39,10 @@ then
 fi
 
 # check if tmux plugin manager exists
-if [ ! -d "$HOME/.tmux/plugins/tpm" ] 
-then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
+# if [ ! -d "$HOME/.tmux/plugins/tpm" ] 
+# then
+#     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# fi
 
 if [ -f ~/.bashrc ]; then
     echo ".bashrc file exists."
@@ -56,7 +64,8 @@ echo "export PATH="$HOME/.local/bin:\$PATH"" >> ~/.bashrc
 echo "export PATH="$HOME/.local/bin:\$PATH"" >> ~/.bash_profile
 
 cp .zshrc ~/.zshrc
-cp .p10k.zsh ~/.p10k.zsh
+# cp .p10k.zsh ~/.p10k.zsh
+echo 'eval "$(~/.local/bin/starship init zsh)"' >> ~/.zshrc
 
 echo "exec zsh" >> ~/.bashrc
 echo "exec zsh" >> ~/.bash_profile
