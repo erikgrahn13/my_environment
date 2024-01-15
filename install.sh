@@ -65,7 +65,6 @@ echo "export PATH="$HOME/.local/bin:\$PATH"" >> ~/.bash_profile
 
 cp .zshrc ~/.zshrc
 # cp .p10k.zsh ~/.p10k.zsh
-echo 'eval "$(~/.local/bin/starship init zsh)"' >> ~/.zshrc
 
 echo "exec zsh" >> ~/.bashrc
 echo "exec zsh" >> ~/.bash_profile
