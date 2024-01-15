@@ -13,10 +13,10 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 
 # check if oh-my-zsh already exists
-# if [ ! -d "$HOME/.oh-my-zsh" ] 
-# then
-#     printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-# fi
+if [ ! -d "$HOME/.oh-my-zsh" ] 
+then
+    printf 'Y\n' | sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+fi
 
 # # check if powerlevel10k exists
 # if [ ! -d "$HOME/.oh-my-zsh/custom/themes/powerlevel10k" ] 
